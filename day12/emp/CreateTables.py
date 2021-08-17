@@ -1,3 +1,4 @@
+import sqlite3
 '''
 建立資料表
 1. 部門 departments
@@ -37,4 +38,15 @@ create_employees_sql = '''
         CONSTRAINT fk_departments FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
     );
 '''
+
+# 建立資料表
+conn = sqlite3.connect('emp.db')
+cursor = conn.cursor()
+cursor.execute(create_departments_sql)
+cursor.execute(create_employees_sql)
+conn.commit()
+print('Table 建立完成')
+conn.close()
+
+
 
