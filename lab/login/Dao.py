@@ -21,9 +21,16 @@ class UserDao:
     # 新增
     def add_user(self, user):
         self.__users.append(user)
+        print('新增成功')
 
-    # 修改 （Homework）
-
+    # 修改 password （Homework）
+    def update_password(self, username, new_password):
+        user = self.find_user(username)
+        if user is not None:
+            user.password = new_password
+            print('密碼修改成功')
+        else:
+            print('密碼修改失敗')
 
     # 刪除 （Homework）
 

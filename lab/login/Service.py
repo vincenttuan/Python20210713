@@ -35,4 +35,12 @@ class UserService:
     def get_users(self):
         return self.__dao.find_all_user()
 
-
+    def update_password(self, username, password, new_password):
+        user = self.__dao.find_user(username)
+        if user is not None:
+            if user.password == password :
+                self.__dao.update_password(username, new_password)
+            else:
+                print('原密碼不正確')
+        else:
+            print('查無此人')
