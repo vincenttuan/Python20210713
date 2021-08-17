@@ -44,3 +44,10 @@ class UserService:
                 print('原密碼不正確')
         else:
             print('查無此人')
+
+    def delete_user(self, username):
+        user = self.__dao.find_user(username)
+        if user is not None:
+            self.__dao.delete_user(user)
+        else:
+            print('查無此人')

@@ -29,3 +29,11 @@ if __name__ == '__main__':
     # 查詢所有 user
     users = service.get_users()
     print_users(users)
+
+    # 刪除 user
+    username = 'helen'
+    service.delete_user(username)
+
+    # 查詢所有 user
+    users = service.get_users()
+    print_users(users)

@@ -33,4 +33,6 @@ class UserDao:
             print('密碼修改失敗')
 
     # 刪除 （Homework）
-
+    def delete_user(self, user):
+        self.__users.remove(user)
+        print('刪除成功')
