@@ -13,3 +13,8 @@ for i in range(49):
     print(n, count[0])
 
 conn.close()
+
+# 請問哪一個號碼出現次數最多 ?
+# 以及哪一個號碼出現次數最少 ?
+
+
