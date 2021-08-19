@@ -9,7 +9,7 @@ cursor = conn.cursor()
 dept_id = 2
 sql = "select count(*) as count from employees where dept_id = %d" % (dept_id)
 cursor.execute(sql)
-count = cursor.fetchone()
+count = cursor.fetchone()  # 取得一筆資料
 print(count, count[0])
 if count[0] == 0:
     sql = "Delete from departments where dept_id = %d" % (dept_id)
