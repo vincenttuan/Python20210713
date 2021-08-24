@@ -8,7 +8,7 @@ from datetime import datetime
 +-------+
 |  10   |
 |加   減 |
-| ... |
+|  ...  |
 +-------+
 若減到 0 則視窗離開 !
 ... = 現在時刻 2021/8/24 20:36:30
@@ -49,10 +49,10 @@ win.geometry("300x250")
 
 #-----------------------------------------------------------------
 dt = tkinter.StringVar()
-timelabel = tkinter.Label(win, textvariable=dt)
-timelabel.pack()
 t = threading.Thread(target=update_time)
 t.start()
+timelabel = tkinter.Label(win, textvariable=dt)
+timelabel.pack()
 #-----------------------------------------------------------------
 ans = tkinter.IntVar()
 ans.set(10)
