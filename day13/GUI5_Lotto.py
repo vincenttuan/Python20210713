@@ -10,21 +10,17 @@ import time
 |  Play |  Exit |
 +-------+-------+
 '''
-def generateValue1():
-    for i in range(30):
-        n1 = random.randint(0, 9)
-        value1.set(n1)
-        n2 = random.randint(0, 9)
-        value2.set(n2)
-        n3 = random.randint(0, 9)
-        value3.set(n3)
-        n4 = random.randint(0, 9)
-        value4.set(n4)
+def generateValue(count, value):
+    for i in range(count):
+        n = random.randint(0, 9)
+        value.set(n)
         time.sleep(0.05)
 
 def play():
-    t1 = threading.Thread(target=generateValue1)
-    t1.start()
+    list = [(30, value1), (60, value2), (90, value3), (120, value4)]
+    for item in list:
+        t = threading.Thread(target=generateValue, args=(item[0], item[1],))
+        t.start()
 
 
 win = tkinter.Tk()
