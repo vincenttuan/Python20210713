@@ -57,7 +57,7 @@ def play():
     printTTT()  # 印出盤面
     if theWinnerIs():  # 判斷是否有贏家
         return False
-
+    #-------------------------------------------
     # 電腦玩「X」
     if not keepGoing():  # 是否有空間可以繼續玩 ?
         return False
