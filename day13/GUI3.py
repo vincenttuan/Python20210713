@@ -1,6 +1,7 @@
 # 放入視窗元件
+import time
 import tkinter
-
+import threading
 '''
 +-------+
 |  10   |
@@ -8,7 +9,9 @@ import tkinter
 +-------+
 若減到 0 則視窗離開 !
 '''
-
+def win_exit():
+    time.sleep(0.5)
+    win.quit()
 
 def add():
     value = ans.get()
@@ -20,6 +23,9 @@ def sub():
     value = ans.get()
     value = value - 1
     ans.set(value)
+    if value == 0:
+        t = threading.Thread(target=win_exit)  # 建立一個子執行緒
+        t.start()  # 子執行緒運作
 
 
 win = tkinter.Tk()
