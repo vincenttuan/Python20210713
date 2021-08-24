@@ -8,22 +8,32 @@ import tkinter
 +-------+
 若減到 0 則視窗離開 !
 '''
+
+
 def add():
-    pass
+    value = ans.get()
+    value = value + 1
+    ans.set(value)
+
 
 def sub():
-    pass
+    value = ans.get()
+    value = value - 1
+    ans.set(value)
+
 
 win = tkinter.Tk()
 win.title("我的小視窗 3")
 win.geometry("300x200")
 
+ans = tkinter.IntVar()
+ans.set(10)
 label = tkinter.Label(win,
-                      text='10',
+                      textvariable=ans,
                       bg='yellow',
-                      font=('Arial', 20),
-                      width=30,
-                      height=5)
+                      font=('Arial', 50),
+                      width=20,
+                      height=2)
 label.pack()
 
 button1 = tkinter.Button(win, text="加", width=10, height=2, font=('Arial', 20),
