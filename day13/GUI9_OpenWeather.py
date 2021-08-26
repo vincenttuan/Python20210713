@@ -23,7 +23,16 @@ from tkinter import font
 def openweatherService(q):
     path = 'https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s' % (q, appid)
     ow = json.loads(requests.get(path).text)
-    print(ow)
+    description = ow['weather'][0]['description']
+    icon = ow['weather'][0]['icon']
+    temp = ow['main']['temp'] - 273.15
+    humidity = ow['main']['humidity']
+
+    print(description, icon, temp, humidity)
+    # 並請配置在 ＧＵＩ上面
+    t_result_value.set('%.1f °C' % temp)
+    h_result_value.set('%.1f %%' % humidity)
+    desp_label_value.set(description)
 
 def submit():
     q = entry.get()
@@ -43,13 +52,18 @@ if __name__ == '__main__':
     entry.insert(0, 'taoyuan,tw')
     submit_btn = tkinter.Button(text='Submit', font=myfont, command=submit)
 
+    t_result_value = tkinter.StringVar()
+    t_result_value.set('0.0 °C')
     t_label = tkinter.Label(text='temperature', font=myfont)
-    t_result = tkinter.Label(text='0.0 °C', font=myfont)
+    t_result = tkinter.Label(textvariable=t_result_value, font=myfont)
 
+    h_result_value = tkinter.StringVar()
+    h_result_value.set('0.0 %')
     h_label = tkinter.Label(text='humidity', font=myfont)
-    h_result = tkinter.Label(text='0.0 %', font=myfont)
+    h_result = tkinter.Label(textvariable=h_result_value, font=myfont)
 
-    desp_label = tkinter.Label(text='?', font=myfont)
+    desp_label_value = tkinter.StringVar()
+    desp_label = tkinter.Label(textvariable=desp_label_value, font=myfont)
     icon_label = tkinter.Label(text='?', font=myfont)
 
     win.rowconfigure((0, 1), weight=1)  # 列 0, 1 同步放大與縮小
