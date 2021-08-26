@@ -19,6 +19,7 @@ import tkinter
 import requests
 import json
 import urllib
+import threading
 from PIL import Image, ImageTk
 from io import BytesIO
 
@@ -51,11 +52,16 @@ def openweatherService(q):
     t_result_value.set('%.1f °C' % temp)
     h_result_value.set('%.1f %%' % humidity)
     desp_label_value.set(description)
-    showIcon(icon)
+
+    # 加入執行緒 2
+    t2 = threading.Thread(target=showIcon, args=(icon,))
+    t2.start()
 
 def submit():
     q = entry.get()
-    openweatherService(q)
+    # 加入執行緒 1
+    t1 = threading.Thread(target=openweatherService, args=(q,))
+    t1.start()
 
 
 if __name__ == '__main__':
