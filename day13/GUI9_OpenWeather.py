@@ -26,8 +26,17 @@ from tkinter import font
 
 def showIcon(icon):
     path = 'https://openweathermap.org/img/wn/%s@4x.png' % icon
+    # 1. 圖片原始資料
     raw_data = urllib.request.urlopen(path).read()
     print(raw_data)
+    # 2. 將圖片原始資料轉成 Image 物件
+    img = Image.open(BytesIO(raw_data))
+    # 3. 將 Image 物件轉成 Photo 物件（給 Label 使用）
+    photo = ImageTk.PhotoImage(img)
+    # 4. 重新配置
+    icon_label = tkinter.Label(image=photo)
+    icon_label.image = photo
+    icon_label.grid(row=4, column=0, columnspan=2, sticky='EWNS')
 
 def openweatherService(q):
     path = 'https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s' % (q, appid)
@@ -74,7 +83,7 @@ if __name__ == '__main__':
 
     desp_label_value = tkinter.StringVar()
     desp_label = tkinter.Label(textvariable=desp_label_value, font=myfont)
-    icon_label = tkinter.Label(text='?', font=myfont)
+    icon_label = tkinter.Label(text='photo', font=myfont)
 
     win.rowconfigure((0, 1), weight=1)  # 列 0, 1 同步放大與縮小
     win.columnconfigure((0, 1), weight=1)  # 欄 0, 1 同步放大與縮小
