@@ -20,6 +20,15 @@ def calc():
     bmi = w / (h/100)**2
     result.set("%.2f" % bmi)
 
+def clean():
+    # 清除欄位資料
+    h_entry.delete(0, tkinter.END)
+    w_entry.delete(0, tkinter.END)
+    # 還原成預設值
+    h_entry.insert(0, '0')
+    w_entry.insert(0, '0')
+    result.set("0.00")
+
 win = tkinter.Tk()
 win.title("BMI 計算機")
 win.geometry("600x250")
@@ -33,7 +42,7 @@ w_label = tkinter.Label(text='Weight', font=myfont)
 w_entry = tkinter.Entry(font=myfont, justify=tkinter.CENTER)
 w_entry.insert(0, '0')
 
-reset_btn = tkinter.Button(text='Reset', font=myfont)
+reset_btn = tkinter.Button(text='Reset', font=myfont, command=clean)
 submit_btn = tkinter.Button(text='Submit', font=myfont, command=calc)
 
 bmi_label = tkinter.Label(text='BMI', font=myfont)
