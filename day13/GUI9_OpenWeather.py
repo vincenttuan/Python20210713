@@ -63,22 +63,22 @@ if __name__ == '__main__':
 
     win = tkinter.Tk()
     win.title('Open Weather')
-    win.geometry('500x200')
+    win.geometry('500x500')
 
     myfont = font.Font(family='Arial', size=24, weight='bold')
 
     entry = tkinter.Entry(font=myfont, justify=tkinter.CENTER)
     entry.insert(0, 'taoyuan,tw')
-    submit_btn = tkinter.Button(text='Submit', font=myfont, command=submit)
+    submit_btn = tkinter.Button(text='查詢', font=myfont, command=submit)
 
     t_result_value = tkinter.StringVar()
     t_result_value.set('0.0 °C')
-    t_label = tkinter.Label(text='temperature', font=myfont)
+    t_label = tkinter.Label(text='溫度', font=myfont)
     t_result = tkinter.Label(textvariable=t_result_value, font=myfont)
 
     h_result_value = tkinter.StringVar()
     h_result_value.set('0.0 %')
-    h_label = tkinter.Label(text='humidity', font=myfont)
+    h_label = tkinter.Label(text='濕度', font=myfont)
     h_result = tkinter.Label(textvariable=h_result_value, font=myfont)
 
     desp_label_value = tkinter.StringVar()
