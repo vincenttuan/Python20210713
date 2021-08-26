@@ -18,7 +18,16 @@ OpenWeather
 import tkinter
 import requests
 import json
+import urllib
+from PIL import Image, ImageTk
+from io import BytesIO
+
 from tkinter import font
+
+def showIcon(icon):
+    path = 'https://openweathermap.org/img/wn/%s@4x.png' % icon
+    raw_data = urllib.request.urlopen(path).read()
+    print(raw_data)
 
 def openweatherService(q):
     path = 'https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s' % (q, appid)
@@ -33,6 +42,7 @@ def openweatherService(q):
     t_result_value.set('%.1f °C' % temp)
     h_result_value.set('%.1f %%' % humidity)
     desp_label_value.set(description)
+    showIcon(icon)
 
 def submit():
     q = entry.get()
