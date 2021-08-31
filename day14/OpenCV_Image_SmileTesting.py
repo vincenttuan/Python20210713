@@ -46,11 +46,21 @@ for (x, y, w, h) in faces:
         cv2.rectangle(roi_color, (ex, ey), (ex+ew, ey+eh), (0, 255, 0), 2)
 
     # 2.進行微笑偵測
-    # 請自行撰寫 +8
-
+    smiles = smile_cascade.detectMultiScale(
+        roi_gray,
+        scaleFactor=1.1,
+        minNeighbors=5,
+        minSize=(30, 30),
+        flags=cv2.CASCADE_SCALE_IMAGE
+    )
+    for (sx, sy, sw, sh) in smiles:
+        cv2.rectangle(roi_color, (sx, sy), (sx + sw, sy + sh), (255, 0, 0), 2)
 
 # 將 frame 顯示
 cv2.imshow('My window', frame)
+
+# 存檔
+cv2.imwrite('./result/smile.jpg', frame)
 
 # 按下任意鍵離開程式
 c = cv2.waitKey(0)
