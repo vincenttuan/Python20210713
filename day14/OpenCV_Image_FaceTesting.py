@@ -17,11 +17,14 @@ faces = face_cascade.detectMultiScale(
     minSize=(30, 30),  # 設定數據最小搜尋的尺寸
     flags=cv2.CASCADE_SCALE_IMAGE
 )
-
 print(faces)
 
+# 在 face 周圍畫上矩形框
+for (x, y, w, h) in faces:
+    cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2)  # (0, 0, 255) BGR 顏色, 2 表示框線的寬度
+
 # 將 frame 顯示
-cv2.imshow('My window', gray)
+cv2.imshow('My window', frame)
 
 # 按下任意鍵離開程式
 c = cv2.waitKey(0)
